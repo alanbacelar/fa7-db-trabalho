@@ -2,7 +2,7 @@
 
 abstract class Test {
 
-	protected $counter_registers = 1000000;
+	protected $counter_registers = 100000;
 	protected $timer;
 	protected $connection;
 	protected $data;
@@ -57,7 +57,7 @@ abstract class Test {
 		$this->execute("Consultando $this->counter_registers de especialidades", 'query1');
 		$this->execute("Consultando uma especialidade por ID", 'query2');
 		$this->execute("Consultando uma especialidade por nome", 'query3');
-		$this->execute("Consultando médicos com especialidades (JOIN)", 'query4');
+		$this->execute("Consultando médicos com especialidades (LEFT JOIN)", 'query4');
 		$this->execute("Consultando médicos com especialidades onde o ID da especialidade é 3", 'query5');
 		$this->execute("Consultando médicos com especialidades onde o nome da especialidade contém 1000 (LIKE)", 'query6');
 		$this->execute("Consultando a quatidade de especialidades (Agregação)", 'query7');
@@ -94,7 +94,7 @@ abstract class Test {
 	}
 
 	protected function query4() {
-		$this->execSQL("SELECT * FROM medicals t1 JOIN specialties t2 ON (t1.specialty_id = t2.id)");
+		$this->execSQL("SELECT * FROM specialties t1 LEFT JOIN medicals t2 ON (t2.specialty_id = t1.id)");
 	}
 
 	protected function query5() {

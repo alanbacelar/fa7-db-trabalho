@@ -16,7 +16,7 @@ class Connection
 	public function getConnection() {
 		switch ($this->database) {
 			case 'mongodb':
-				return $this->getMongoConnection();
+				return $this->getMongoConnection(null, ['replicaSet' => 'myReplSetName', 'socketTimeoutMS' => -1]);
 				break;
 
 			case 'postgresql':
